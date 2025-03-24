@@ -1,17 +1,17 @@
-import { ClipboardEvent } from '../Model/domEventsTypes';
-import { State } from '../Model/State';
-import { getDataToCopy } from './getDataToCopy';
-import { getActiveSelectedRange } from './getActiveSelectedRange';
-import { isBrowserSafari } from './safari';
+import { ClipboardEvent } from "../Model/domEventsTypes";
+import { State } from "../Model/State";
+import { getDataToCopy } from "./getDataToCopy";
+import { getActiveSelectedRange } from "./getActiveSelectedRange";
+import { isBrowserSafari } from "./safari";
 
 export function handleCopy(event: ClipboardEvent, state: State, removeValues = false): State {
-    const activeSelectedRange = getActiveSelectedRange(state);
-    if (!activeSelectedRange) {
-      return state;
-    }
-    const { div } = getDataToCopy(state, activeSelectedRange, removeValues);
-    copyDataCommands(event, state, div);
-    return { ...state, copyRange: activeSelectedRange };
+  const activeSelectedRange = getActiveSelectedRange(state);
+  if (!activeSelectedRange) {
+    return state;
+  }
+  const { div } = getDataToCopy(state, activeSelectedRange, removeValues);
+  copyDataCommands(event, state, div);
+  return { ...state, copyRange: activeSelectedRange };
 }
 
 export function copyDataCommands(event: ClipboardEvent, state: State, div: HTMLDivElement): void {
@@ -22,13 +22,12 @@ export function copyDataCommands(event: ClipboardEvent, state: State, div: HTMLD
   if (isBrowserSafari()) {
     event.clipboardData.setData("text/html", div.innerHTML);
   } else if (supportNavigatorClipboard) {
-    const clipboardItemData = {
-      "text/html": div.innerHTML,
-    };
-    const clipboardItem = new ClipboardItem(clipboardItemData);
-    console.log("ReactGrid: clipboardItem");
-    console.log(clipboardItem);
-    console.log(div.innerHTML);
+    const html = div.innerHTML;
+    const plain = div.innerText || div.textContent || "";
+    const clipboardItem = new ClipboardItem({
+      "text/plain": new Blob([plain], { type: "text/plain" }),
+      "text/html": new Blob([html], { type: "text/html" }),
+    });
     navigator.clipboard.write([clipboardItem]).then(() => ({}));
   } else {
     document.body.appendChild(div);
