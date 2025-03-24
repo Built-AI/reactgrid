@@ -1,5 +1,0 @@
-dist/*
-.eslintrc.js
-*.json
-rollup.config.js
-snapshots.js
