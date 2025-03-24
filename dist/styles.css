@@ -153,7 +153,7 @@
 }
 .reactgrid-content .rg-pane .rg-cell.rg-dropdown-cell .rg-dropdown-option.focused {
   color: black;
-  background-color: #e2ebfe;
+  background-color: #f1f6ff;
 }
 
 .rg-copy-container[contenteditable] {
@@ -203,7 +203,7 @@
   border-color: #e8e8e8;
   color: #000000;
 }
-.reactgrid-content .rg-pane .rg-cell .rg-touch-resize-handle {
+.reactgrid-content .rg-pane .rg-cell .rg-touch-column-resize-handle {
   position: absolute;
   top: 0;
   right: 0;
@@ -211,14 +211,32 @@
   height: 100%;
   pointer-events: auto;
 }
-.reactgrid-content .rg-pane .rg-cell .rg-touch-resize-handle .rg-resize-handle {
+.reactgrid-content .rg-pane .rg-cell .rg-touch-column-resize-handle .rg-resize-handle {
   position: absolute;
   right: 0;
   width: 6px;
   height: 100%;
 }
-.reactgrid-content .rg-pane .rg-cell .rg-touch-resize-handle .rg-resize-handle:hover {
+.reactgrid-content .rg-pane .rg-cell .rg-touch-column-resize-handle .rg-resize-handle:hover {
   cursor: col-resize;
+  background-color: #3579f8;
+}
+.reactgrid-content .rg-pane .rg-cell .rg-touch-row-resize-handle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 11px;
+  width: 100%;
+  pointer-events: auto;
+}
+.reactgrid-content .rg-pane .rg-cell .rg-touch-row-resize-handle .rg-resize-handle {
+  position: absolute;
+  bottom: 0;
+  height: 6px;
+  width: 100%;
+}
+.reactgrid-content .rg-pane .rg-cell .rg-touch-row-resize-handle .rg-resize-handle:hover {
+  cursor: row-resize;
   background-color: #3579f8;
 }
 .reactgrid-content .rg-pane .rg-cell .rg-groupId {
@@ -249,7 +267,7 @@
   cursor: crosshair;
   top: 50%;
   left: 50%;
-  transform: translate(calc(-50% - 1px / 2), calc(-50% - 1px / 2));
+  transform: translate(calc(-50% - (1px/ 2)), calc(-50% - (1px/ 2)));
   width: 6.5px;
   height: 6.5px;
   background-color: #3579f8;
@@ -330,6 +348,12 @@
   z-index: 4;
 }
 .reactgrid-content .rg-column-resize-hint {
+  background-color: #74b9ff;
+  position: absolute;
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+}
+.reactgrid-content .rg-row-resize-hint {
   background-color: #74b9ff;
   position: absolute;
   padding: 5px;
