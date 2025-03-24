@@ -26,6 +26,9 @@ export function copyDataCommands(event: ClipboardEvent, state: State, div: HTMLD
       "text/html": div.innerHTML,
     };
     const clipboardItem = new ClipboardItem(clipboardItemData);
+    console.log("ReactGrid: clipboardItem");
+    console.log(clipboardItem);
+    console.log(div.innerHTML);
     navigator.clipboard.write([clipboardItem]).then(() => ({}));
   } else {
     document.body.appendChild(div);
